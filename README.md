@@ -1,8 +1,22 @@
-# React + Vite
+resources[ -https://iconscout.com/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+]
 
-Currently, two official plugins are available:
+src[
+-main page[
+--component[
+---SearchBar
+]
+--icons
+]
+]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+steps[
+-make searchbar component
+-initialize useState to track display of searchbar
+-add input tag
+-initialize ust to track inputs
+-add icons
+-create dummy data for search
+-initialize ust to render search results
+]
