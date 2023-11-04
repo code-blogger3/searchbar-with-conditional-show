@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Searchbar from "./components/Searchbar";
 import { Users } from "./data";
@@ -13,7 +13,28 @@ import {
 function App() {
   const [isSearch, setIsSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [filterSearch, setFilterSearch] = useState([]);
+  const [filterSearch, setFilteredSearch] = useState([]);
+
+  const handleSearch = () => {
+    if (searchInput !== "") {
+      let searched = Users.filter((user) => {
+        return Object.values(user)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+
+      setFilteredSearch(searched);
+    }
+  };
+
+  useEffect(() => {
+    let debounced = setTimeout(() => {
+      handleSearch();
+    }, 200);
+
+    return () => clearTimeout(debounced);
+  }, [searchInput]);
 
   return (
     <>
@@ -28,10 +49,30 @@ function App() {
           />
           <AiOutlineHome size={30} />
           <AiOutlineUserSwitch size={30} />
+          <AiOutlineMessage size={30} className="react-icon" />
+          <AiOutlineBell size={30} className="react-icon" />
         </div>
       )}
 
-      {searchInput.length === 0 ? <></> : <div></div>}
+      {searchInput.length === 0 ? (
+        <></>
+      ) : (
+        <div>
+          {
+            <div className="search-results">
+              {filterSearch.length === 0 ? (
+                <div className="search-inner">No Results Found..</div>
+              ) : (
+                filterSearch.map((user) => (
+                  <div>
+                    <p className="name">{user.name}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          }
+        </div>
+      )}
     </>
   );
 }
