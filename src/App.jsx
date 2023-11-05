@@ -13,7 +13,7 @@ import {
 function App() {
   const [isSearch, setIsSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [filterSearch, setFilteredSearch] = useState([]);
+  const [filteredSearch, setFilteredSearch] = useState([]);
 
   const handleSearch = () => {
     if (searchInput !== "") {
@@ -60,10 +60,10 @@ function App() {
         <div>
           {
             <div className="search-results">
-              {filterSearch.length === 0 ? (
+              {filteredSearch.length === 0 ? (
                 <div className="search-inner">No Results Found..</div>
               ) : (
-                filterSearch.map((user) => (
+                filteredSearch.map((user) => (
                   <div>
                     <p className="name">{user.name}</p>
                   </div>
