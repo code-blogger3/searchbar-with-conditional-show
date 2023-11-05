@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     let debounced = setTimeout(() => {
       handleSearch();
-    }, 200);
+    }, 400);
 
     return () => clearTimeout(debounced);
   }, [searchInput]);
